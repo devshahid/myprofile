@@ -1,0 +1,13 @@
+{
+  "name": "smart-coders",
+  "version": "1.0.0",
+  "description": "Javascript React JS NodeJS assignment",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app",
+    "start": "node app"
+  },
+  "keywords": [],
+  "author": "Shahid Qureshi",
+  "license": "ISC"
+}

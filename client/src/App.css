@@ -1,0 +1,65 @@
+.App {
+  text-align: center;
+}
+
+.SignInOuter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+.signInBody {
+  width: 1067px;
+  height: 606px;
+  background: #a18989;
+  border-radius: 32px;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inputField {
+  /* position: absolute; */
+  width: 385px;
+  height: 60px;
+  /* left: 447px;
+  top: 248px; */
+  border: 1px solid #b6b5b5;
+  border-radius: 12px;
+}
+.inputField label {
+  font-family: "General Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 140%;
+  display: flex;
+  align-items: center;
+  color: #323338;
+}
+.inputField input {
+  font-family: "General Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  display: flex;
+  align-items: center;
+  color: #8e8e8e;
+  outline: none;
+  border: none;
+}
+.forgetPassword p {
+  font-family: "General Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  display: flex;
+  align-items: center;
+  text-decoration-line: underline;
+  color: #323338;
+  float: right;
+}
