@@ -1,0 +1,47 @@
+.profileSection {
+  background: #ffffff;
+  border-radius: 16px;
+}
+.profileDetails {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nameDisplay h3 {
+  font-size: 32px;
+  line-height: 43px;
+  text-align: center;
+  color: #000000;
+}
+.nameDisplay p {
+  font-size: 20px;
+  line-height: 27px;
+  color: #d83a52;
+}
+.profileForm {
+  width: 828px;
+}
+.profileInputBox {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+.profileInputBox > * {
+  padding: 12px;
+}
+.profileInputBox label {
+  color: #d83a52;
+  font-size: 20px;
+  line-height: 27px;
+}
+.profileInputBox input,
+.profileInputBox textarea {
+  background: #f5f6f8;
+  border-radius: 0px 24px 24px 24px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  line-height: 22px;
+  color: #939499;
+  resize: none;
+}
