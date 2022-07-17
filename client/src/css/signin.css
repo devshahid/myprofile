@@ -23,7 +23,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 75px;
+  margin-top: 60px;
 }
 .form form {
   display: flex;
@@ -83,10 +83,11 @@
   text-decoration-line: underline;
   color: #323338;
 }
-
+.signInBtn {
+  display: flex;
+  justify-content: center;
+}
 .signInBtn button {
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
   font-size: 20px;
   line-height: 24px;
   margin-top: 54px;
@@ -98,9 +99,7 @@
   border-radius: 8px;
   outline: none;
   border: none;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+  text-align: center;
 }
 
 .signuptext {
@@ -115,4 +114,8 @@
 .signuptext a {
   text-decoration-line: underline;
   color: #d83a52;
+}
+.forgetpass_comment {
+  margin-top: 70px;
+  text-align: center;
 }
