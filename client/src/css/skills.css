@@ -71,3 +71,35 @@
   line-height: 27px;
   color: #323338;
 }
+
+.addSkillsModalBox {
+  background: #fefefe;
+  border-radius: 16px;
+  width: 656px;
+  height: 443px;
+}
+
+.titleHeaderSkills {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+}
+.titleHeaderSkills h4 {
+  font-size: 20px;
+  line-height: 27px;
+  color: #000000;
+}
+.titleHeaderSkills .crossIconAddSkills {
+  padding: 10px;
+  font-size: 20px;
+}
+.addSkillsForm {
+  display: flex;
+  flex-direction: row;
+}
+.addSkillDetails {
+  font-size: 20px;
+  line-height: 27px;
+  text-align: center;
+  color: #d83a52;
+}
