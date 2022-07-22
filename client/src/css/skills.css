@@ -1,0 +1,73 @@
+.skillsHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5rem;
+}
+.searchBar {
+  background: #f5f6f8;
+  border-radius: 24px;
+  width: 50%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+}
+/* comment for actual */
+.searchBar > * {
+  margin: 0 10px;
+  padding: 0 8px;
+}
+.searchBar .searchIcon {
+  color: #969696;
+  font-size: 24px;
+}
+/* .searchBar input,
+.searchBar .inputSkills {
+  border: none;
+  padding: 5px 0;
+  outline: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 120%;
+  color: #969696;
+  background: #f5f6f8;
+} */
+
+.addSkills button {
+  background: #d83a52;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 8px;
+  border: none;
+  outline: none;
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+.skillsView {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.skills {
+  /* background: green; */
+  background: #f5f6f8;
+  border-radius: 0px 24px 24px 24px;
+  width: calc(50% - 50px) !important;
+  height: 74px;
+  margin: 25px 10px 0;
+}
+.skills h4 {
+  padding: 10px;
+  font-size: 20px;
+  line-height: 27px;
+  color: #323338;
+}

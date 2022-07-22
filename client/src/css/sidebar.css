@@ -5,7 +5,7 @@
   --first-color: #ffffff;
   --first-color-alt: #323338;
   --active-link-color: #d83a52;
-  --white-color: #ffddee;
+  --white-color: #000000;
 }
 * {
   margin: 0;
@@ -73,8 +73,8 @@ main {
   margin-bottom: 1.5rem;
 }
 .nav-link:hover {
-  color: var(--white-color);
-  background-color: rgba(0, 0, 0, 0.1);
+  color: var(--active-link-color);
+  background-color: #f8e1e7;
 }
 .active {
   color: var(--active-link-color);

@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 const Form = (props) => {
+  const navigate = useNavigate();
+  const handleSignIn = () => {
+    navigate("/profile");
+  };
   return (
     <div className="SignInOuter">
       <div className="signInBody">
@@ -40,7 +46,7 @@ const Form = (props) => {
               ""
             )}
             <div className="signInBtn">
-              <button>{props.buttonName}</button>
+              <button onClick={handleSignIn}>{props.buttonName}</button>
             </div>
           </form>
         </div>
