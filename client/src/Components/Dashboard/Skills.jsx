@@ -21,7 +21,7 @@ const Skills = () => {
     { label: "Module Bundlers" },
   ];
   const [value, setValue] = useState([0, 0, 2, 2, 3]);
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const style = {
     position: "absolute",
     top: "50%",
@@ -50,6 +50,7 @@ const Skills = () => {
   const addNewSkills = () => {
     top100Films.push(newSkills);
     console.log(top100Films);
+    setOpen(false);
   };
   return (
     <>

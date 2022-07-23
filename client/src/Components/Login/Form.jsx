@@ -37,7 +37,7 @@ const Form = (props) => {
             ))}
             {props.type === "signin" ? (
               <div className="passwordMessage">
-                <p className="wrongPass">Incorrect password entered</p>
+                <p className="wrongPass">{}</p>
                 <Link to="/forgotpassword" className="forgetPass">
                   Forgot password?
                 </Link>

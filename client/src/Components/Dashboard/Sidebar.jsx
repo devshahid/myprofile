@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import "../../css/sidebar.css";
 import "../../css/profile.css";
@@ -12,10 +12,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Sidebar = () => {
-  const [changeClass, setChangeClass] = useState({
-    id: 1,
-  });
-
   return (
     <main className="space-toggle">
       <div className="sidebar show">
