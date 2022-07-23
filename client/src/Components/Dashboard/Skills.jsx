@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
-import { faSearch, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faPlus, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Rating from "@mui/material/Rating";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
-
 import Modal from "@mui/material/Modal";
 const Skills = () => {
-  const top100Films = [
+  let top100Films = [
     { label: "Modern CSS" },
     { label: "Static Site Generators" },
     { label: "Version Control" },
@@ -22,9 +21,7 @@ const Skills = () => {
     { label: "Module Bundlers" },
   ];
   const [value, setValue] = useState([0, 0, 2, 2, 3]);
-  const handleAddSkills = () => {
-    setOpen(true);
-  };
+  const [open, setOpen] = React.useState(true);
   const style = {
     position: "absolute",
     top: "50%",
@@ -33,9 +30,27 @@ const Skills = () => {
     outline: "none",
     border: "none",
   };
-  const [open, setOpen] = React.useState(true);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [newSkills, setNewSkills] = useState({
+    skillTitle: null,
+    ratingStars: null,
+  });
+
+  const handleAddSkills = () => {
+    setOpen(true);
+  };
+
+  const handleInputs = (e, value) => {
+    if (e.target.name === "skillTitle") {
+      setNewSkills({ ...newSkills, [e.target.name]: e.target.value });
+    } else {
+      setNewSkills({ ...newSkills, [e.target.name]: value });
+    }
+  };
+  const addNewSkills = () => {
+    top100Films.push(newSkills);
+    console.log(top100Films);
+  };
   return (
     <>
       <main className="space-toggle">
@@ -98,15 +113,31 @@ const Skills = () => {
                 <div className="titleHeaderSkills">
                   <h4>Add a New Skill</h4>
                   <FontAwesomeIcon
+                    onClick={handleClose}
                     className="crossIconAddSkills"
-                    icon={faXmark}
+                    icon={faX}
                   />
                 </div>
                 <div className="addSkillsForm">
                   <div className="addSkillDetails">
                     <label>Skill</label>
-                    <input type="text" placeholder={`Enter your details`} />
+                    <input
+                      type="text"
+                      name="skillTitle"
+                      onChange={handleInputs}
+                      placeholder="Enter your skill"
+                    />
                   </div>
+                  <div className="addSkillDetails">
+                    <label>How would you rate yourself?</label>
+                    <Rating
+                      className="ratingStars"
+                      name="ratingStars"
+                      size="large"
+                      onChange={handleInputs}
+                    />
+                  </div>
+                  <button onClick={addNewSkills}>Add a Skill</button>
                 </div>
               </div>
             </Box>
