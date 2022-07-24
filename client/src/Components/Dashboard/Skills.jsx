@@ -59,12 +59,13 @@ const Skills = () => {
     const fetchData = async () => {
       console.log("useEffect");
       const response = axios.get(`/getSkills/${state.userData.userid}`);
-      const data = (await response).data.loginUser;
+      const data = (await response).data;
       console.log(data);
+      console.log(data.loginUser);
       if (Object.entries(data).length !== 0) {
-        console.log("fetcheddata", data.skills);
-        setUserSkills({ ...userSkills, skills: data.skills });
-        dispatch(actions.updateSkillsArr(data.skills));
+        console.log("fetcheddata", data.loginUser.skills);
+        setUserSkills({ ...userSkills, skills: data.loginUser.skills });
+        dispatch(actions.updateSkillsArr(data.loginUser.skills));
       }
     };
     fetchData();
