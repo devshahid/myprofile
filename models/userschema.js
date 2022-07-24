@@ -24,6 +24,16 @@ const userSchema = new mongoose.Schema({
   aboutMe: {
     type: String,
   },
+  skills: [
+    {
+      skillname: {
+        type: String,
+      },
+      rating: {
+        type: Number,
+      },
+    },
+  ],
 });
 
 const userProfile = mongoose.model("userprofile", userSchema);

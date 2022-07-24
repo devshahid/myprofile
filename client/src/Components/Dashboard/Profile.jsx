@@ -41,6 +41,7 @@ const Profile = () => {
       userid: state.userData.userid,
     });
     const data = (await response).data;
+    console.log(data);
     dispatch(actions.updateUserName(userInfo.userName));
     setOpen(false);
   };
@@ -51,7 +52,9 @@ const Profile = () => {
     if (data.statusCode === 201) {
       response = await axios.get(`/getUserInfo/${state.userData.userid}`);
       data = (await response).data;
+      console.log(data);
       dispatch(actions.updateUserDetails(data.loginUser));
+      console.log(state);
     }
   };
   const style = {
