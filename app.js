@@ -21,7 +21,6 @@ app.use(express.json());
 //using middleware for getting cookie from browser
 app.use(cookieParser());
 require("./database/conn");
-console.log(__dirname + "/client/build/index.html");
 if (
   process.env.NODE_ENV === "production" ||
   process.env.NODE_ENV === "staging"

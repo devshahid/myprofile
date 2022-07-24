@@ -10,3 +10,30 @@ export const updateWebsiteData = (userData) => ({
     useraboutme: userData.useraboutme,
   },
 });
+
+export const updateUserInfo = (userData) => ({
+  type: actions.UPDATE_USERINFO,
+  payload: {
+    username: userData.username,
+    usercontact: userData.usercontact,
+    useraboutme: userData.useraboutme,
+  },
+});
+
+export const updateStateOneTime = (state) => ({
+  type: actions.UPDATE_ONETIMESTATE,
+  payload: state,
+});
+
+export const updateUserDetails = (userData) => ({
+  type: actions.UPDATE_USERDETAILS,
+  payload: {
+    contact: userData.contact,
+    aboutme: userData.aboutMe,
+  },
+});
+
+export const updateUserName = (username) => ({
+  type: actions.UPDATE_USERNAME,
+  payload: username,
+});

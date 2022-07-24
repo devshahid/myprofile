@@ -10,14 +10,14 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
+import * as actions from "../../Redux/action";
+
 import { useSelector, useDispatch } from "react-redux";
 const Profile = () => {
   const state = useSelector((state) => state.UpdateGlobalState);
-  console.log(state);
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const [userInfo, setUserInfo] = useState({
     userName:
       state.userData.username !== undefined
@@ -27,24 +27,32 @@ const Profile = () => {
     aboutme: state.userData.useraboutme,
     userid: state.userData.userid,
   });
+  const handleClose = () => {
+    setOpen(false);
+    setUserInfo({ ...userInfo, userName: state.userData.username });
+  };
+
   const handleInput = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   };
-  const updateDetail = async () => {
+  const updateUserName = async () => {
     const response = await axios.post("/updatename", {
       userName: userInfo.userName,
       userid: state.userData.userid,
     });
     const data = (await response).data;
-    console.log(data);
+    dispatch(actions.updateUserName(userInfo.userName));
     setOpen(false);
   };
   const updateInfo = async (e) => {
     e.preventDefault();
-    console.log(userInfo);
-    const response = await axios.post("/updateUserInfo", userInfo);
-    const data = (await response).data;
-    console.log(data);
+    var response = await axios.post("/updateUserInfo", userInfo);
+    var data = (await response).data;
+    if (data.statusCode === 201) {
+      response = await axios.get(`/getUserInfo/${state.userData.userid}`);
+      data = (await response).data;
+      dispatch(actions.updateUserDetails(data.loginUser));
+    }
   };
   const style = {
     position: "absolute",
@@ -56,6 +64,7 @@ const Profile = () => {
     border: "2px solid #000",
     boxShadow: 24,
   };
+
   return (
     <>
       <main className="space-toggle">
@@ -112,7 +121,7 @@ const Profile = () => {
                 <input
                   type="text"
                   name="contact"
-                  value={state.userData.usercontact}
+                  value={userInfo.contact}
                   onChange={handleInput}
                   placeholder="Enter your contact number"
                 />
@@ -124,7 +133,7 @@ const Profile = () => {
                   cols="30"
                   rows="10"
                   name="aboutme"
-                  value={state.userData.useraboutme}
+                  value={userInfo.aboutme}
                   onChange={handleInput}
                 />
               </div>
@@ -143,11 +152,12 @@ const Profile = () => {
                   className="updateNameModal"
                   label="Enter your Full Name"
                   variant="standard"
+                  name="userName"
                   value={userInfo.userName}
                   onChange={handleInput}
                 />
               </div>
-              <Button variant="contained" onClick={updateDetail}>
+              <Button variant="contained" onClick={updateUserName}>
                 Update
               </Button>
             </Box>

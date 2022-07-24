@@ -26,3 +26,7 @@ export const SET_PRODUCT_IMG = "setProductImg";
 export const PRODUCT_NAME = "productName";
 
 export const USERDATA = "userdata";
+export const UPDATE_USERINFO = "update_user_info";
+export const UPDATE_ONETIMESTATE = "update_onetime";
+export const UPDATE_USERDETAILS = "update_userdetails";
+export const UPDATE_USERNAME = "update_username";

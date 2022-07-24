@@ -17,22 +17,19 @@ const Form = (props) => {
   const navigate = useNavigate();
   const handleSignIn = async (e) => {
     e.preventDefault();
-    console.log(userDetails, e.target.name);
     if (e.target.name === "Sign In") {
       const response = await axios.post("/login", userDetails);
       const data = (await response).data;
-      console.log(data);
       if (data.error === "Invalid credentials") {
-        console.log("invalid");
         setUserDetails({ ...userDetails, incorrect: true });
       } else {
+        dispatch(actions.updateStateOneTime(false));
         dispatch(actions.updateWebsiteData(data.userData));
-        navigate("/profile", { state: { userData: data.userData } });
+        navigate("/profile");
       }
     } else if (e.target.name === "Sign Up") {
       const response = await axios.post("/register", userDetails);
       const data = (await response).data;
-      console.log(data);
       if (data.statusCode === 201) {
         navigate("/");
       }

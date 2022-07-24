@@ -3,16 +3,17 @@ const initialState = {
   userData: {
     userid: "",
     useremail: "",
-    username: "",
-    usercontact: "",
-    useraboutme: "",
+    username: undefined,
+    usercontact: undefined,
+    useraboutme: undefined,
   },
+  onetimeupdate: true,
+  updateState: true,
 };
 
 const UpdateGlobalState = (state = initialState, action) => {
   switch (action.type) {
     case actions.USERDATA:
-      console.log(action.payload);
       return {
         ...state,
         userData: {
@@ -22,6 +23,39 @@ const UpdateGlobalState = (state = initialState, action) => {
           username: action.payload.username,
           usercontact: action.payload.usercontact,
           useraboutme: action.payload.useraboutme,
+        },
+      };
+    case actions.UPDATE_USERINFO:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          username: action.payload.username,
+          usercontact: action.payload.usercontact,
+          useraboutme: action.payload.useraboutme,
+        },
+      };
+    case actions.UPDATE_ONETIMESTATE:
+      return {
+        ...state,
+        onetimeupdate: action.payload,
+      };
+
+    case actions.UPDATE_USERDETAILS:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          usercontact: action.payload.contact,
+          useraboutme: action.payload.aboutme,
+        },
+      };
+    case actions.UPDATE_USERNAME:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          username: action.payload,
         },
       };
 
