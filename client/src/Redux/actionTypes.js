@@ -30,3 +30,4 @@ export const UPDATE_USERINFO = "update_user_info";
 export const UPDATE_ONETIMESTATE = "update_onetime";
 export const UPDATE_USERDETAILS = "update_userdetails";
 export const UPDATE_USERNAME = "update_username";
+export const UPDATE_SKILLS_ARR = "UPDATE_SKILLS_ARR";

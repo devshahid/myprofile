@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import { faSearch, faPlus, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,21 +7,18 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from "../../Redux/action";
+
 const Skills = () => {
-  let top100Films = [
-    { label: "Modern CSS" },
-    { label: "Static Site Generators" },
-    { label: "Version Control" },
-    { label: "Mobile Applications" },
-    { label: "Web Security" },
-    { label: "Build Tools" },
-    { label: "Server Side Rendering" },
-    { label: "Task Runners" },
-    { label: "Web Assembly" },
-    { label: "Module Bundlers" },
-  ];
-  const [value, setValue] = useState([0, 0, 2, 2, 3]);
+  const state = useSelector((state) => state.UpdateGlobalState);
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+  const [trackStatus, setTrackStatus] = React.useState(false);
+  const [userSkills, setUserSkills] = useState({
+    skills: state.skills,
+  });
   const style = {
     position: "absolute",
     top: "50%",
@@ -30,10 +27,14 @@ const Skills = () => {
     outline: "none",
     border: "none",
   };
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setTrackStatus(!trackStatus);
+  };
   const [newSkills, setNewSkills] = useState({
     skillTitle: null,
-    ratingStars: null,
+    ratingStars: 0,
+    userid: state.userData.userid,
   });
 
   const handleAddSkills = () => {
@@ -47,11 +48,27 @@ const Skills = () => {
       setNewSkills({ ...newSkills, [e.target.name]: value });
     }
   };
-  const addNewSkills = () => {
-    top100Films.push(newSkills);
-    console.log(top100Films);
+  const addNewSkills = async () => {
+    const response = await axios.post("/addskills", newSkills);
+    const data = (await response).data;
+    // top100Films.push(newSkills);
+    console.log(data);
     setOpen(false);
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("useEffect");
+      const response = axios.get(`/getSkills/${state.userData.userid}`);
+      const data = (await response).data;
+      console.log("fetcheddata", data.loginUser.skills);
+      if (Object.entries(data).length !== 0) {
+        setUserSkills({ ...userSkills, skills: data.loginUser.skills });
+        dispatch(actions.updateSkillsArr(data.loginUser.skills));
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trackStatus]);
   return (
     <>
       <main className="space-toggle">
@@ -61,7 +78,8 @@ const Skills = () => {
             <FontAwesomeIcon className="searchIcon" icon={faSearch} />
             <Autocomplete
               className="skillAutomcomplete"
-              options={top100Films}
+              options={state.skills}
+              getOptionLabel={(option) => option.skillname}
               sx={{ width: 300 }}
               renderInput={(params) => (
                 <TextField
@@ -80,23 +98,25 @@ const Skills = () => {
           </div>
         </div>
         <div className="skillsView">
-          {top100Films.map((key, index) => (
+          {userSkills.skills.map((key, index) => (
             <>
               <div className="skills">
-                <h4>{key.label}</h4>
+                <h4>{key.skillname}</h4>
                 <Rating
+                  className="ratingStars"
                   name="size-large"
-                  value={value[index]}
+                  value={key.rating}
                   size="large"
-                  onChange={(event, newValue) => {
-                    console.log(newValue);
-                    setValue((value) => ({
-                      ...value,
-                      [index]: newValue,
-                    }));
+                  disabled
+                  // onChange={(event, newValue) => {
+                  //   console.log(newValue);
+                  //   setValue((value) => ({
+                  //     ...value,
+                  //     [index]: newValue,
+                  //   }));
 
-                    console.log(value);
-                  }}
+                  //   console.log(value);
+                  // }}
                 />
               </div>
             </>

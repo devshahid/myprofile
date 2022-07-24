@@ -37,3 +37,8 @@ export const updateUserName = (username) => ({
   type: actions.UPDATE_USERNAME,
   payload: username,
 });
+
+export const updateSkillsArr = (skills) => ({
+  type: actions.UPDATE_SKILLS_ARR,
+  payload: skills,
+});

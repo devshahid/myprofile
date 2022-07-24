@@ -9,6 +9,7 @@ const initialState = {
   },
   onetimeupdate: true,
   updateState: true,
+  skills: [],
 };
 
 const UpdateGlobalState = (state = initialState, action) => {
@@ -57,6 +58,13 @@ const UpdateGlobalState = (state = initialState, action) => {
           ...state.userData,
           username: action.payload,
         },
+      };
+
+    case actions.UPDATE_SKILLS_ARR:
+      console.log("payload", action.payload);
+      return {
+        ...state,
+        skills: action.payload,
       };
 
     default:

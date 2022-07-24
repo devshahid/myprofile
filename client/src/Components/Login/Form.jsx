@@ -5,8 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import * as actions from "../../Redux/action";
+
 const Form = (props) => {
   const dispatch = useDispatch();
+  const state = useSelector((state) => state.UpdateGlobalState);
 
   const [userDetails, setUserDetails] = useState({
     useremail: "",
@@ -20,6 +22,12 @@ const Form = (props) => {
     if (e.target.name === "Sign In") {
       const response = await axios.post("/login", userDetails);
       const data = (await response).data;
+      if (data.loginUser.skills.length > 0) {
+        console.log(data.loginUser.skills);
+        console.log("defined");
+        dispatch(actions.updateSkillsArr(data.loginUser.skills));
+        console.log(state);
+      }
       if (data.error === "Invalid credentials") {
         setUserDetails({ ...userDetails, incorrect: true });
       } else {

@@ -6,6 +6,7 @@ const userLogin = require("../controllers/userLogin");
 const updateName = require("../controllers/updateName");
 const updateUserInfo = require("../controllers/updateUserInfo");
 const getUserInfo = require("../controllers/getUserInfo");
+const addSkills = require("../controllers/addSkills");
 router.get("/", (req, res) => {
   res.send("Server is Running");
 });
@@ -21,5 +22,9 @@ router.post("/updatename", updateName);
 router.post("/updateUserInfo", updateUserInfo);
 
 router.get("/getUserInfo/:userid", getUserInfo);
+
+router.post("/addskills", addSkills);
+
+router.get("/getSkills/:userid", getUserInfo);
 
 module.exports = router;

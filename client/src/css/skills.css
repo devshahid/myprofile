@@ -62,7 +62,7 @@
   background: #f5f6f8;
   border-radius: 0px 24px 24px 24px;
   width: calc(50% - 50px) !important;
-  height: 74px;
+  height: 85px;
   margin: 25px 10px 0;
 }
 .skills h4 {
@@ -70,8 +70,13 @@
   font-size: 20px;
   line-height: 27px;
   color: #323338;
+  margin: 0 20px;
 }
-
+.skills .ratingStars {
+  margin: 5px 20px;
+  color: #d83a52;
+  font-weight: bold;
+}
 .addSkillsModalBox {
   background: #fefefe;
   border-radius: 16px;

@@ -27,7 +27,7 @@ const userLogin = async (req, res) => {
     };
     return res
       .status(200)
-      .json({ message: "Welcome user", status: "200", userData });
+      .json({ message: "Welcome user", status: "200", userData, loginUser });
   } catch (err) {
     return res.status(500).json({ error: err, status: "500" });
   }
