@@ -60,8 +60,8 @@ const Skills = () => {
       console.log("useEffect");
       const response = axios.get(`/getSkills/${state.userData.userid}`);
       const data = (await response).data;
-      console.log("fetcheddata", data.loginUser.skills);
       if (Object.entries(data).length !== 0) {
+        console.log("fetcheddata", data.loginUser.skills);
         setUserSkills({ ...userSkills, skills: data.loginUser.skills });
         dispatch(actions.updateSkillsArr(data.loginUser.skills));
       }
