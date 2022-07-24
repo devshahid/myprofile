@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const userRegister = require("../Controllers/userRegister");
-const userLogin = require("../Controllers/userLogin");
-const updateName = require("../Controllers/updateName");
-const updateUserInfo = require("../Controllers/updateUserInfo");
+const userRegister = require("../controllers/userRegister");
+const userLogin = require("../controllers/userLogin");
+const updateName = require("../controllers/updateName");
+const updateUserInfo = require("../controllers/updateUserInfo");
 router.get("/", (req, res) => {
   res.send("Server is Running");
 });
