@@ -45,3 +45,26 @@
   color: #939499;
   resize: none;
 }
+.updateNameCityModal {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.updateNameModal {
+  width: 100%;
+  padding: 20px 0;
+}
+.updateDetailsBtn {
+  background: #d83a52;
+  outline: none;
+  border: none;
+  border-radius: 0px 24px 24px 24px;
+  color: #ffffff;
+  padding: 10px 15px;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

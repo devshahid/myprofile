@@ -3,7 +3,6 @@ const express = require("express");
 
 // it will use for all secrects
 const dotenv = require("dotenv");
-
 // calling express function and store meta data inside app, now app has all property of express
 const app = express();
 
@@ -21,10 +20,12 @@ app.use(express.json());
 
 //using middleware for getting cookie from browser
 app.use(cookieParser());
+require("./database/conn");
 
 if (process.env.NODE_ENV == "production") {
   app.use(express.static("client/build"));
 }
+app.use(require("./routes/route"));
 
 // initializing the server at port value mentioned in config.env file
 app.listen(PORT, () => {

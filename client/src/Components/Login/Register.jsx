@@ -6,9 +6,24 @@ const Register = () => {
   return (
     <Form
       inputFields={[
-        { fieldName: "Email Address", icon: faEnvelope },
-        { fieldName: "Password", icon: faKey },
-        { fieldName: "Confirm Password", icon: faKey },
+        {
+          fieldName: "Email Address",
+          icon: faEnvelope,
+          type: "email",
+          name: "useremail",
+        },
+        {
+          fieldName: "Password",
+          icon: faKey,
+          type: "password",
+          name: "userpass",
+        },
+        {
+          fieldName: "Confirm Password",
+          icon: faKey,
+          type: "password",
+          name: "confirmpass",
+        },
       ]}
       LabelName="Sign Up"
       buttonName="Sign Up"

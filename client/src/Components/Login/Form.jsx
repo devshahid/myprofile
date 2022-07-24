@@ -1,12 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import * as actions from "../../Redux/action";
 const Form = (props) => {
+  const dispatch = useDispatch();
+
+  const [userDetails, setUserDetails] = useState({
+    useremail: "",
+    userpass: "",
+    confirmpass: "",
+    incorrect: false,
+  });
   const navigate = useNavigate();
-  const handleSignIn = () => {
-    navigate("/profile");
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    console.log(userDetails, e.target.name);
+    if (e.target.name === "Sign In") {
+      const response = await axios.post("/login", userDetails);
+      const data = (await response).data;
+      console.log(data);
+      if (data.error === "Invalid credentials") {
+        console.log("invalid");
+        setUserDetails({ ...userDetails, incorrect: true });
+      } else {
+        dispatch(actions.updateWebsiteData(data.userData));
+        navigate("/profile", { state: { userData: data.userData } });
+      }
+    } else if (e.target.name === "Sign Up") {
+      const response = await axios.post("/register", userDetails);
+      const data = (await response).data;
+      console.log(data);
+      if (data.statusCode === 201) {
+        navigate("/");
+      }
+    }
+    //
+  };
+  const handleInputs = (e) => {
+    setUserDetails({ ...userDetails, [e.currentTarget.name]: e.target.value });
   };
   return (
     <div className="SignInOuter">
@@ -27,7 +61,9 @@ const Form = (props) => {
                 <div className="inputField">
                   <label>{props.inputFields[key].fieldName}</label>
                   <input
-                    type="email"
+                    onChange={handleInputs}
+                    type={`${props.inputFields[key].type}`}
+                    name={`${props.inputFields[key].name}`}
                     placeholder={`Enter your ${props.inputFields[
                       key
                     ].fieldName.toLowerCase()} here`}
@@ -37,7 +73,9 @@ const Form = (props) => {
             ))}
             {props.type === "signin" ? (
               <div className="passwordMessage">
-                <p className="wrongPass">{}</p>
+                <p className="wrongPass">
+                  {userDetails.incorrect ? "Incorrect credentials entered" : ""}
+                </p>
                 <Link to="/forgotpassword" className="forgetPass">
                   Forgot password?
                 </Link>
@@ -46,7 +84,9 @@ const Form = (props) => {
               ""
             )}
             <div className="signInBtn">
-              <button onClick={handleSignIn}>{props.buttonName}</button>
+              <button name={props.buttonName} onClick={handleSignIn}>
+                {props.buttonName}
+              </button>
             </div>
           </form>
         </div>

@@ -5,8 +5,18 @@ const SignIn = () => {
   return (
     <Form
       inputFields={[
-        { fieldName: "Email Address", icon: faEnvelope },
-        { fieldName: "Password", icon: faKey },
+        {
+          fieldName: "Email Address",
+          icon: faEnvelope,
+          type: "email",
+          name: "useremail",
+        },
+        {
+          fieldName: "Password",
+          icon: faKey,
+          type: "password",
+          name: "userpass",
+        },
       ]}
       LabelName="Sign In"
       buttonName="Sign In"
